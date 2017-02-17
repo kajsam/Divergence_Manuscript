@@ -1,0 +1,55 @@
+\subsection{History} 
+
+Multiple-instance learning (MIL) is a form of supervised learning where each object consists of several observations.
+The observations themselves are not labelled, but the objects are.  
+An object is referred to as {\it bag} in the MIL context, and the individual observations within the bag are referred to as {\it instances}.
+In binary MIL, the classes are referred to as {\it positive} and {\it negative}. 
+Image classification is a typical example of MIL. 
+Each image (bag) consists of a number of pixels (instances).
+An image in the training set is labelled 'positive' if it contains a certain material or body of interest, e.g. tumour tissue, and 'negative' if the material is absent. 
+However, the exact location of the material within the image is unknown, and hence, the individual pixels are not labelled. 
+A positive image contains pixels both from the tumour and from normal tissue, whereas a negative image contains only pixels from normal tissue. 
+The task is to train a classifier using the pixels values with only information on image level. 
+
+The term multiple instance learning was introduced by {\color{green} Dietterich et at (1997)}. 
+The musk data was introduced, where some molecules will give a musk odour (positive class), others will not (negative class). 
+Each molecule has different shapes, and only certain shapes will give the musky smell. 
+Hence, each molecule is a bag, and the various shapes are its instances. 
+The assumption is that if a bag contains at least one positive instance, the bag is positive, whereas negative bags contains only negative instances. 
+This is referred to as the standard assumption. 
+The main task is to identify the positive instances. 
+If this is done successfully, classification is straightforward.
+
+Since then, the MIL field has developed and expanded. 
+Most notably, the strict assumption of Dietterich has been relaxed and replaced by other assumptions. 
+MIL was introduced as a binary classification problem, but is applicable also in multiple classification, regression and clustering. 
+This article will stick to the binary classification, but will go beyond the standard assumption. 
+
+In the image example, the pixel intensity $x_i$ measured in tumour tissue might typically be above a certain threshold $T_{tissue}$ (positive instance).  
+In normal tissue, the intensity might also be above the threshold, but it will be fewer pixels. 
+Hence, both positive and negative bags contain positive instances, but the assumption is that positive bags contains a larger number of positive instances than negative bags. 
+
+{\color{green} Weidmann et al (2003)} introduced a hierarchy of assumptions, with the standard assumption as the least general. 
+In the review article of {\color{green} Foulds and Frank (2010)}, the Weidmann hierarchy is part of a more extensive taxonomy for MIL assumptions, where also the data representations and similarity measures are taken into account. 
+
+{\color{green} Amores (2013)} provides a different viewpoint and taxonomy, focusing on the type of information; instance-level or bag-level, and the representation of the information; explicitly or implicitly. 
+Both Amores and Foulds and Frank categorise a range of previously proposed algorithm within their taxonomy, many of them whose assumption or information have not been explicitly stated by the authors. 
+Amores and Foulds and Frank offer different and complementary analyses of the MI problem and its proposed algorithms, and touch upon many of the same obstacles and choices: 
+\begin{itemize}
+  \item Assumption
+  \item Type of information (instance vs bag)
+  \item Information representation (explicit vs implicit)
+  \item Dissimilarity measures
+  \item Prototypes/concepts
+\end{itemize}
+
+As the MI methodology has developed over the last few decades, the need for relaxed assumptions has arisen and has been incorporated in new methods and algorithms. 
+As in all fields of research, there is no universal MI methodology that solves all problems the best. 
+Using stricter assumptions is beneficial if the data meet them, but can be devastating if they are violated.
+The problem to be solved can also be of various characteristics, and the methodology must be chosen accordingly. 
+
+This paper offers an alternative viewpoint for MI classification: Hierarchical distribution and bag-to-class divergence. 
+The hierarchical distribution describes the assumption of the instances in each bag, whereas the bag-to-class divergence offers a dissimilarity measure. 
+The alternative viewpoint can be fitted into both Foulds and Frank's and Amores taxonomy, by adding and specifying properties. 
+
+

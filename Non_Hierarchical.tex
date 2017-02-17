@@ -1,0 +1,35 @@
+The positive instances are observations from $p^+(x|\theta^+)$. 
+The negative instances are observations from $p^-(x|\theta^-)$. 
+A positive bag contains the observations:
+\begin{align}
+  p_{bag(pos)}(x) = \pi_{pos}^+ p^+(x|\theta^+) + (1-\pi_{pos}^+) p^-(x|\theta^-)
+\end{align}
+A negative bag contains the observations:
+\begin{align}
+  p_{bag(neg)}(x) = \pi_{neg}^+ p^+(x|\theta^+) + (1-\pi_{neg}^+) p^-(x|\theta^-)
+\end{align}
+
+If all positive bags follow the same distribution and all negative bags follow the same distribution, then the best estimation of $p_{bag(pos)}(x)$ is to pool all instances from the positive bags, and we get $\hat{p}_{bag(pos)}(x)$.
+We can then look at $\hat{p}_{bag(pos)}(x)$ and $\hat{p}_{bag(neg)}(x)$ as prototypes to which the distance from $\hat{p}_{bag}(x)$ is measured.
+
+However, more realistically, we assume that 
+\begin{align}
+  p_{bag(pos),b}(x) = \pi_{pos,b}^+ p^+(x|\theta^+_b) + (1-\pi_{pos,b}^+) p^-(x|\theta^-_b)
+\end{align}
+and that 
+\begin{align}
+  p_{pos}(x) = \sum_{b=1}^B p_{bag(pos),b}(x) = \sum_{b=1}^B \pi_{pos,b}^+ p^+(x|\theta^+_b) + (1-\pi_{pos,b}^+) p^-(x|\theta^-_b)
+\end{align}
+
+%Since $n_{bag} << n_{pos} \approx n_{neg}$, $D(\hat{p}_{bag}, p_{neg}) > D(\hat{p}_{neg}, p_{neg})$, and we cannot expect $D(\hat{p}_{bag(neg)},\hat{p}_{neg}) \approx \min(D)$.
+
+Assume that $\pi_{pos}^+ p^+(x|\theta^+)$ to $\pi_{neg}^+ p^+(x|\theta^+)$ is more discriminative than $(1-\pi_{pos}^+) p^-(x|\theta^-)$
+to $(1-\pi_{neg}^+) p^-(x|\theta^-)$. 
+% In addition $\pi_{pos}^+ < 0.5$.
+% In other words, the positive instances are few, but have more discriminative power than the negative instances. 
+\begin{align}
+  \frac{\pi_{pos}^+}{\pi_{neg}^+} > \frac{1-\pi_{pos}^+}{1-\pi_{neg}^+} 
+\end{align}
+% The same distortion in $\hat{f}^+$ as in $\hat{f}^-$ will lead to a greater non-overlapping area at $\hat{f}^-$
+Therefore, non-symmetric divergence function. 
+Kullback-Leibler meets the requirement.

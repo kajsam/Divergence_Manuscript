@@ -1,0 +1,34 @@
+A random variable $X_{pos}$ from a positive bag can be seen as a three level Bayes hierarchy. $X_{pos}$ is distributed with parameter $\theta$, which is a random variable. $\theta$ is distributed with parameter $\tau$, which takes value $\tau^+$ with probability $p = \pi_{pos}^+$ and $\tau^-$ with probability $p = 1-\pi_{pos}^+$.
+\begin{align}
+  X_{pos}|\theta & \sim P(X_{pos} | \theta) \\
+  \theta|\tau &  \sim P(\theta|\tau) \\
+  \tau & \sim \begin{cases}
+    \tau^+, & \text{with probability } p = \pi_{pos}^+\\
+    \tau^-, & \text{with probability } p = 1-\pi_{pos}^+
+  \end{cases}
+\end{align}
+
+The pdf of the $b$th positive bag is then
+\begin{align}
+  f_{b,pos}(x) = \pi_{pos}^+ f^+(x|\theta^+_b) +(1-\pi_{pos}^+) f^-(x|\theta^-_b), 
+\end{align}
+where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
+The pdf of positive bags is then
+\begin{align*}
+  f_{pos}(x) = \pi_{pos}^+ \int_{\Theta|\tau^+} f^+(x|\theta)h(\theta|\tau^+) d\theta|\tau^+  +(1-\pi_{pos}^+) \int_{\Theta|\tau^-} f^-(x|\theta) h(\theta|\tau^-) d\theta|\tau^-, 
+\end{align*}
+where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
+
+Similarly for negative bags we have
+\begin{align}
+  X_{neg}|\theta & \sim P(X_{neg} | \Theta) \\
+  \Theta|\mathcal{T} &  \sim P(\theta|\tau) \\
+  \tau & \sim \begin{cases}
+    P(\mathcal{T} = \tau^+) = \pi_{neg}^+\\
+    P(\mathcal{T} = \tau^-  = 1-\pi_{neg}^+
+  \end{cases}
+\end{align}
+and
+\begin{align}
+  f_{{b'},neg}(x) = \pi_{neg}^+ f^+(x|\theta^+_{b'}) +(1-\pi_{neg}^+) f^-(x|\theta^-_{b'}), 
+\end{align}

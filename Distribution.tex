@@ -1,0 +1,32 @@
+Let $x_{b,i}$ be the observed instance $i$ in bag $b$, an observation from the underlying distribution $P(X|\mathbf{\theta})$.
+An instance can either be positive $x_{b,i}^+$, or negative, $x_{b',i}^-$.
+Both positive and negative instances occur in both positive and negative bags.
+An instance randomly drawn from a positive bag will be positive with probability $\pi_{pos}^+$ (and negative with probability $1-\pi_{pos}^+$).
+An instance randomly drawn from a negative bag will be positive with probability $\pi_{neg}^+$ (and negative with probability $1-\pi_{neg}^+$).
+The distribution of positive instances is $P(X|\mathbf{\theta}_b^+)$, where $\mathbf{\theta}^+$ is distributed according to $P(\mathbf{\theta}^+|\mathbf{\tau}^+)$, and $\mathbf{\tau}^+$ is a fixed parameter.
+The distribution of negative instances is $P(X|\mathbf{\theta}_b^-)$, where $\mathbf{\theta}^-$ is distributed according to $P(\mathbf{\theta}^-|\mathbf{\tau}^-)$, and $\mathbf{\tau}^-$ is a fixed parameter.
+The pdf of a positive bag $b$ can be written as
+\begin{align}
+  p_{bag(pos),b}(x) = \pi_{pos}^+p^+(x|\mathbf{\theta}_b^+) + (1-\pi_{pos}^+) p^-(x|\mathbf{\theta}_b^-),
+\end{align}
+and that of a negative bag $b'$
+\begin{align}
+  p_{bag(neg),b'}(x) = \pi_{neg}^+p^+(x|\mathbf{\theta}_{b'}^+) + (1-\pi_{neg}^+) p^-(x|\mathbf{\theta}_{b'}^-),
+\end{align}
+This is a Bayesian hierarchical distribution where the hyperparameters $\pi_{pos}^+$ and $\pi_{neg}^+$ differ between the positive and the negative class, whereas the hyperparameters $\theta^+$ and $\theta^-$ differ from bag to bag. 
+
+For $x_{pos,i}$, an observed instance in the positive class, the empirical pdf of the positive class can be written as
+\begin{align}
+  p_{pos}(x) = \frac{1}{B}\sum_{b = 1}^B  p_{bag(pos),b}(x), 
+\end{align}
+and likewise for the negative class
+\begin{align}
+  p_{neg}(x) = \frac{1}{B'}\sum_{b' = 1}^{B'}  p_{bag(neg),{b'}}(x). 
+\end{align}
+$B$ and $B'$ are the number of all possible bag distributions. 
+
+We assume that $\pi_{pos}^+ > \pi_{neg}^+$, that is, the probability of a randomly drawn instance from a randomly drawn positive bag being positive is greater than if the instance were drawn from a negative bag. 
+
+We make no assumptions regarding the distributions, besides continuity, and we will not attempt to estimate the parameters. 
+
+Instead, the distributions will be approximated by a mixture of Gaussian distributions. 

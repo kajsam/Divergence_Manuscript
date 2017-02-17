@@ -1,0 +1,25 @@
+\begin{enumerate}
+  \item $f_{bag}(x) = f_{NEG}(x)$
+  \item $f_{bag}(x) = f_{POS}(x)$
+  \item $f_{\cpos}(x) = f_{NEG}(x)$
+  \item $f_{bag}(x) \perp f_{NEG}(x)$
+  \item $f_{bag}(x) \perp f_{POS}(x)$
+  \item $f_{POS}(x) \perp f_{NEG}(x)$
+\end{enumerate}
+$condI_{KL}(bag,\cneg|\cpos) = \int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx$ 
+\begin{enumerate}
+  \item $ \int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{NEG}(x) \log \frac{f_{NEG}(x)}{f_{NEG}(x)} dx = 0$ 
+  \item $\int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{POS}(x) \log \frac{f_{POS}(x)}{f_{NEG}(x)} dx$ 
+  \item $\int_{\mathcal{X}} f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx$ 
+  \item $\int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx = \infty$ 
+  \item $\int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx = 0$ 
+  \item $\int_{\mathcal{X}_{POS}} \frac{f_{POS}(x)}{f_{NEG}(x)} f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx = \infty$ 
+\end{enumerate}
+$D_{KL} = \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx / \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{POS}(x)} dx$
+\begin{enumerate}
+  \item $\int f_{NEG}(x) \log \frac{f_{NEG}(x)}{f_{NEG}(x)} dx / \int f_{NEG}(x) \log \frac{f_{NEG}(x)}{f_{POS}(x)} dx = 0$
+  \item $ \int f_{POS}(x) \log \frac{f_{POS}(x)}{f_{NEG}(x)} dx / \int f_{POS}(x) \log \frac{f_{POS}(x)}{f_{POS}(x)} dx = \infty$
+  \item $\int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx / \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx = 1$
+  \item $\int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx / \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{POS}(x)} dx = \infty$
+  \item $\int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx / \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{POS}(x)} dx = 0$
+  \item $\int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{NEG}(x)} dx / \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_{POS}(x)} dx$\end{enumerate}

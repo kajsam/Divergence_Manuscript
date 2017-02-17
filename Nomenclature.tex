@@ -1,0 +1,26 @@
+\noindent $f(x)$ : probability density function (pdf) \\
+$f^+(x)$ : pdf of positive instances \\
+$f^-(x)$ : pdf of negative instances \\
+$f_{bag}(x)$ : pdf of bag (unknown class) \\
+$f_{pos}(x)$ : pdf of positive bag \\
+$f_{neg}(x)$ : pdf of negative bag \\
+$f_{POS} (x) $ : pdf of positive class \\
+$f_{NEG} (x) $ : pdf of negative class \\
+$\pi_{pos}^+$ : probability of an instance in a positive bag being sampled for $f^+(x)$ \\
+$\pi_{neg}^+$ : probability of an instance in a negative bag being sampled for $f^+(x)$ \\
+$X_{pos}$ : random variabel in positive bag \\
+$x_{pos,b,i}$ : observation $i$ in positive bag $b$ \\
+$X_{neg}$ : random variabel in negative bag \\
+$x_{neg,{b'},i}$ : observation $i$ in negative bag $b'$ \\
+$\Theta^+$ : random variable with distribution parameter $\tau^+$ \\
+$\theta_b^+$ : $b$th distribution parameter (observation of $\Theta^+$) \\
+$\Theta^-$ : random variable with distribution parameter $\tau^-$ \\
+$\theta_b^-$ : $b$th distribution parameter (observation of $\Theta^-$) \\
+$\mathcal{T}$ : random variable \\
+$\tau^+, \tau^-$ : observations of $\mathcal{T}$ \\
+
+\noindent
+$I_{KL}(bag,\cpos) = I_{KL}(f_{bag}(x), f_{POS}(x))$ \\
+$D_{KL} = I_{KL} (bag,\cneg)/I_{KL} (bag,\cpos) $\\
+$condI_{KL} (bag,\cneg|\cpos) = I_{KL} (f_{bag}(x),f_{NEG}(x) | f_{ALT}(x) = f_{POS} (x)) $ \\
+ 
