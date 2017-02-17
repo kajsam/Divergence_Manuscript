@@ -1,0 +1,118 @@
+The instances in a bag are most often treated as fixed points, but can also be viewed as observations of random variables with an (unknown) probability distribution. 
+The probabilistic viewpoint is not an MI assumption by itself, but can be used as a tool to analyse the problem and choose the appropriate concept. 
+
+For ease of notation, we will not use bold characters to denote vectors, as there is no need to distinguish between vectors and scalars in the following, and we will refer to random vectors as random variables.
+The superscript $^+$ or $^-$ refers to the instance class, the subscript $_{pos}$ or $_{neg}$ refers to the class label of the bag. 
+
+Let $X^+$ denote the random variable of a positive instance, and let $f^+(x|\theta_b^+)$ denote the pdf of the positive instances in bag $b$. 
+Similarly, Let $X^-$ denote the random variable of a negative instance, and let $f^-(x|\theta_b^-)$ denote the pdf of the negative instances in bag $b$. 
+Then, the pdf of bag $b$ is
+\begin{align}
+  f_b(x) = \pi^+_b f^+(x|\theta_b^+) + (1-\pi^+_b)f^-(x|\theta_b^-),
+\end{align}
+where $0 \leq \pi^+_b \leq 1$ denotes the proportion of positive instances in bag $b$. 
+
+As an illustrative example, consider images of tissue with class label {\it tumour} (positive) or {\it normal} (negative). 
+The image is the bag, and the pixels or image segments are its instances. 
+The value of each pixel is then considered to be an observation from the underlying bag distribution. 
+A pixel will belong to either tumour, with pdf $f^+(x|\theta_b^+)$, or normal tissue, $f^-(x|\theta_b^-)$, but the individual pixels are not labelled. 
+In image $b$, a certain proportion are tumour pixels ($\pi^+_b$), the rest ($1-\pi^+_b$) are normal pixels.  
+The pixels from tumour image $b$ has pdf
+\begin{align}
+  f_{b,pos}(x) = \pi^+_{b,pos} f^+(x|\theta_b^+) + (1-\pi^+_{b,pos})f^-(x|\theta_b^-).
+\end{align}
+Similarly, the pixels from a normal image $b'$ has pdf
+\begin{align}
+  f_{b',neg}(x) = \pi^+_{b',neg} f^+(x|\theta_{b'}^+) + (1-\pi^+_{b,neg})f^-(x|\theta_{b'}^-).
+\end{align}
+Since both tumour and normal tissue vary from image to image, we assume $\theta_b^+$ being an observation from the distribution $P(\Theta|\tau^+)$ and $\theta_b^-$ being an observation from the distribution $P(\Theta|\tau^-)$, where $\tau^+$ and $\tau^-$ are parameters. 
+And since the tumour size varies, we also assume that $\pi^+_{b,pos}$ is an observation from $P(\Pi^+_{pos})$. 
+Written as a hierarchical distribution: 
+\begin{align}
+  X_{pos}|\Theta & \sim P(X_{pos} | \Theta) \\
+  \Theta|\mathcal{T} &  \sim P(\Theta|\mathcal{T}) \\
+  \mathcal{T} & \sim \begin{cases}
+    P(\mathcal{T} = \tau^+) = \Pi_{pos}^+\\
+    P(\mathcal{T} = \tau^-)  = 1-\Pi_{pos}^+
+  \end{cases} \\
+  \Pi_{pos}^+ & \sim P(\Pi^+_{pos})
+\end{align}
+Similarly, for the normal images we have
+\begin{align}
+  X_{neg}|\Theta & \sim P(X_{neg} | \Theta) \\
+  \Theta|\mathcal{T} &  \sim P(\Theta|\mathcal{T}) \\
+  \mathcal{T} & \sim \begin{cases}
+    P(\mathcal{T} = \tau^+) = \Pi_{neg}^+\\
+    P(\mathcal{T} = \tau^-)  = 1-\Pi_{neg}^+
+  \end{cases} \\
+  \Pi_{neg}^+ & \sim P(\Pi^+_{neg})
+\end{align}
+
+\subsection{MI assumption in the probabilistic framework}
+This is a general description of the origin of the instances, and does not imply any MI assumptions. 
+Restrictions on the different levels of the hierarchical distribution will correlate to MI assumptions.
+The standard MI assumption is then \\
+(1) $P(\Pi^+_{neg} = 0) = 1$: no positive instances in a negative bag\\
+(2) $0<\pi^+_{pos} \leq 1$: at least one positive instance in a positive bag\\
+(3) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ : no overlap between the set of possible positive values and possible negative values \\
+The last assumption is generally not explicitly stated, but many algorithms are dedicated to finding $\mathcal{X}^+$, and thereafter use a concept that assumes (3). 
+
+The count-based assumption is\\
+(1) $t_{low,pos} < \pi^+_{pos} < t_{up,pos}$ \\
+(2) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ \\
+
+The count-based GMIL can be defined in the probabilistic setting by letting $\pi^+_{pos}$ be a vector with $k$ elements, and $\pi^+_{b,pos} f^+(x|\theta_b^+) = \sum_{k = 1}^K \pi^+_{b,pos,k} f^+_k(x|\theta_{b,k}^+)$, with the restrictions\\
+(1) $\max \{\pi^+_{pos,k} == 0\} = r$ \\
+(2) $\mathcal{X}^+_k$: defines {\it sufficiently close}. 
+(3) $\mathcal{X}^+_k \cap \mathcal{X}^- = \emptyset$ for all $k$ \\
+
+\subsection{Level of information in the probabilistic framework}
+In the review article of Amores, MIL algorithms are categorised according 
+
+
+In the {\it collective} assumption in Foulds and Frank, the assumption about $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ is relaxed.
+
+
+
+
+
+
+
+
+
+
+
+%A random variable $X_{pos}$ from a positive bag can be seen as a three level Bayes hierarchy. $X_{pos}$ is distributed with parameter $\theta$, which is a random variable. $\theta$ is distributed with parameter $\tau$, which takes value $\tau^+$ with probability $p = \pi_{pos}^+$ and $\tau^-$ with probability $p = 1-\pi_{pos}^+$.
+%\begin{align}
+%  X_{pos}|\theta & \sim P(X_{pos} | \theta) \\
+%  \theta|\tau &  \sim P(\theta|\tau) \\
+%  \tau & \sim \begin{cases}
+%    \tau^+, & \text{with probability } p = \pi_{pos}^+\\
+%    \tau^-, & \text{with probability } p = 1-\pi_{pos}^+
+%  \end{cases}
+%\end{align}
+%
+%The pdf of the $b$th positive bag is then
+%\begin{align}
+%  f_{b,pos}(x) = \pi_{pos}^+ f^+(x|\theta^+_b) +(1-\pi_{pos}^+) f^-(x|\theta^-_b), 
+%\end{align}
+%where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
+%The pdf of positive bags is then
+%\begin{align*}
+%  f_{pos}(x) = \pi_{pos}^+ \int_{\Theta|\tau^+} f^+(x|\theta)h(\theta|\tau^+) d\theta|\tau^+  +(1-\pi_{pos}^+) \int_{\Theta|\tau^-} f^-(x|\theta) h(\theta|\tau^-) d\theta|\tau^-, 
+%\end{align*}
+%where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
+%
+%Similarly for negative bags we have
+%\begin{align}
+%  X_{neg}|\theta & \sim P(X_{neg} | \Theta) \\
+%  \Theta|\mathcal{T} &  \sim P(\theta|\tau) \\
+%  \tau & \sim \begin{cases}
+%    P(\mathcal{T} = \tau^+) = \pi_{neg}^+\\
+%    P(\mathcal{T} = \tau^-  = 1-\pi_{neg}^+
+%  \end{cases}
+%\end{align}
+%and
+%\begin{align}
+%  f_{{b'},neg}(x) = \pi_{neg}^+ f^+(x|\theta^+_{b'}) +(1-\pi_{neg}^+) f^-(x|\theta^-_{b'}), 
+%\end{align}
