@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  22 FEB 2017 11:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  22 FEB 2017 16:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -313,39 +313,48 @@ Overfull \hbox (22.3347pt too wide) in paragraph at lines 64--68
 2 x\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^R[]\OT1/cmr/m/n/12 )$,
  []
 
-[5]) (./Assumptions.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--6
+[5]) (./Divergence_Classifier.tex [6]
+<Figures/tumourVSnormal.pdf, id=34, 845.1575pt x 597.23125pt>
+File: Figures/tumourVSnormal.pdf Graphic file (type pdf)
 
- []
+<use Figures/tumourVSnormal.pdf>
+Package pdftex.def Info: Figures/tumourVSnormal.pdf used on input line 43.
+(pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
+
+<Figures/tumVSnorm.pdf, id=35, 845.1575pt x 597.23125pt>
+File: Figures/tumVSnorm.pdf Graphic file (type pdf)
+
+<use Figures/tumVSnorm.pdf>
+Package pdftex.def Info: Figures/tumVSnorm.pdf used on input line 49.
+(pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--11
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- []
-
-[6]) (./Distribution.tex [7]) (./Dissimilarity.tex
+[7] [8 <./Figures/tumourVSnormal.pdf> <./Figures/tumVSnorm.pdf>])
+(./Distribution.tex [9]) (./Dissimilarity.tex
 Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
-[8] [9]
+[10] [11]
 Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
-<Figures/distrs.pdf, id=44, 845.1575pt x 597.23125pt>
+<Figures/distrs.pdf, id=95, 845.1575pt x 597.23125pt>
 File: Figures/distrs.pdf Graphic file (type pdf)
  <use Figures/distrs.pdf>
 Package pdftex.def Info: Figures/distrs.pdf used on input line 94.
 (pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
 
-<Figures/pos.pdf, id=45, 845.1575pt x 597.23125pt>
+<Figures/pos.pdf, id=96, 845.1575pt x 597.23125pt>
 File: Figures/pos.pdf Graphic file (type pdf)
  <use Figures/pos.pdf>
 Package pdftex.def Info: Figures/pos.pdf used on input line 97.
 (pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
 
-<Figures/neg.pdf, id=46, 845.1575pt x 597.23125pt>
+<Figures/neg.pdf, id=97, 845.1575pt x 597.23125pt>
 File: Figures/neg.pdf Graphic file (type pdf)
  <use Figures/neg.pdf>
 Package pdftex.def Info: Figures/neg.pdf used on input line 100.
@@ -361,33 +370,33 @@ ML/cmm/m/it/12 > p[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$. Then
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10] [11 <./Figures/distrs.pdf> <./Figures/pos.pdf> <./Figures/neg.pdf>]
+[12] [13 <./Figures/distrs.pdf> <./Figures/pos.pdf> <./Figures/neg.pdf>]
 Overfull \hbox (70.24931pt too wide) in paragraph at lines 136--136
 [] 
  []
 
-[12]) (./Conditional.tex
+[14]) (./Conditional.tex
 Overfull \hbox (42.80768pt too wide) in paragraph at lines 27--27
 [] 
  []
 
-) (./Bag_vs_Class.tex [13]) (./Non_Hierarchical.tex) (./Bayes_hierarchy.tex
-[14]
+) (./Bag_vs_Class.tex [15]) (./Non_Hierarchical.tex) (./Bayes_hierarchy.tex
+[16]
 Overfull \hbox (21.71635pt too wide) in paragraph at lines 19--19
 [] 
  []
 
-) (./Eq_Orth.tex [15]) (./Regions.tex
+) (./Eq_Orth.tex [17]) (./Regions.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--6
 
  []
 
-[16]) (./Notes_1.tex
+[18]) (./Notes_1.tex
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-) (./Notes_2.tex [17]) [18] (./Nomenclature.tex
+) (./Notes_2.tex [19]) [20] (./Nomenclature.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--21
 
  []
@@ -401,17 +410,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--26
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
-) [19
+) [21
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3289 strings out of 493014
- 42936 string characters out of 6133352
- 114175 words of memory out of 5000000
- 6709 multiletter control sequences out of 15000+600000
+ 3299 strings out of 493014
+ 43222 string characters out of 6133352
+ 114176 words of memory out of 5000000
+ 6717 multiletter control sequences out of 15000+600000
  11247 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,16n,30p,378b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,16n,30p,390b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
@@ -427,10 +436,10 @@ r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
 local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/l
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on main.pdf (19 pages, 517539 bytes).
+Output written on main.pdf (21 pages, 690771 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
+ 314 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
