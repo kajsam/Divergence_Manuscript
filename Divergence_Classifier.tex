@@ -1,0 +1,79 @@
+As with all classification problems, if we knew the exact nature of the data, an optimal classifier could be chosen. 
+Instead, we have to choose between very general assumptions that lead to sub-optimal classifiers, or stronger assumptions that ensure higher performance, but only if the assumptions are correct. 
+There are three fundamental levels for MI problems:
+(1) Choice of MI assumption \\
+(2) Estimation \\
+(3) Choice of classifier
+These three steps are present both for deterministic and probabilistic viewpoint, and step (3) is closely linked to step (1) and (2). 
+In the probabilistic framework, the choice of MI assumption can be stated as restrictions on the underlying pdfs. 
+The pdfs that are used in classification of new bags have to be estimated based on the available bags with labels. 
+Finally, the classifier can be chosen and trained based on the previous assumptions and choices. 
+
+The most general MI assumption in the probabilistic framework is that $\tau^+ \neq \tau^-$ (the pdf of positive instances is different from the pdf of negative instances) and $\Pi_{pos}^+ \neq \Pi_{neg}^+$ (the distribution of the proportion of positive instances in a positive bag is different form that of positive instances in a negative bag). 
+
+Accurate estimation the four levels of the Baye's hierarchy is out of reach for most problems. 
+Therefore, we suggest to directly estimate the pdf of a bag with unknown label based on its instances, $\hat{f}_{bag}(x)$.
+A dissimilarity measure can now be chosen to constitute the classifier. 
+
+In Amores, all bag level classifiers are based on bag-to-bag dissimilarity measures. 
+As pointed out by the author, this has the drawback that the number of comparisons that has to be made increases exponentially, and so the computational burden.
+However, instance level algorithms suffer from inaccurate information (the true instance labels are not known), and the embedded space algorithms suffer from possible oversimplification. 
+
+We therefore suggest a bag level classifier based on the bag-to-class dissimilarity. 
+Hence, there are only two comparisons for each classification. 
+
+Let $f_\cpos(x)$ be the pdf corresponding to the random variabel $X_{pos}$, i.e. instances in the positive labelled bags. Similarly, let $f_\cneg(x)$ be the pdf corresponding to the random variabel $X_{neg}$.
+Let $D(f_{bag}(x), f_\cpos(x)$ denote the dissimilarity measure from $f_{bag}(x)$ to $f_\cpos(x)$.
+
+\subsection{Divergences}
+
+Dissimilarity measures between two probability distributions are referred to as divergence functions, or simply divergences, and measure the distance from one probability distribution to another. 
+Divergences are not distance functions in the mathematical definition, as they don't necessarily fulfil the symmetry or the triangle inequality properties. 
+Because distance between probability distributions is not uniquely defined, but very much depends on the problem at hand, there is a huge range of divergences. 
+Common divergences are the Kullback-Leibler information, the Bhatacharrya distance, etc. 
+There are no common properties that a function has to fulfil to be called a divergence, but many divergences have known properties, and are categorised accordingly. 
+
+In the MI classification, we suggest the following:\\
+Because we measure the divergence from a bag to a class, we do not expect the bag's distribution to be equal to the class' distribution. 
+A bag's distribution is one of the possible distributions of that class. 
+
+Back to the example of tissue images, we can illustrate it as follows. 
+\begin{figure}[!h]
+  \centering
+    \includegraphics[height = 0.3\textheight]{Figures/tumourVSnormal.pdf}
+\end{figure}
+The class of tumour images and the class of normal images overlap, but there is a larger difference between the two classes for pixels values in the tumour range than in the normal range. 
+The pdf of a bag will not resemble the pdf of either classes of images. 
+\begin{figure}[!h]
+  \centering
+    \includegraphics[height = 0.3\textheight]{Figures/tumVSnorm.pdf}
+\end{figure}
+
+If we could estimate $f^+(x)$, the distribution of the tumour pixels, and then $\pi_{bag}^+$, the proportion of tumour pixels in an unlabelled image, we could treat this as a count-based assumption and classify accordingly. 
+However, by using the pdfs directly, without explicitly estimating the parameters in the different levels of the Bayes' hierarchy, we can possibly make more accurate estimates. 
+In this example, we see that the overlapping area between bag and class is fairly similar for both classes in the normal pixel range. 
+But for the tumour pixel range, the difference becomes larger. 
+However, since the proportion of normal pixels is larger than that of tumour pixels, there is a risk of ignoring this if we measure dissimilarity by overlapping (or non-overlapping) areas.
+A different way of measuring dissimilarity is by distribution ratio $f_{bag}(x) /f_\cpos(x)$ and $f_{bag}(x) /f_\cneg(x)$.
+
+
+
+
+
+
+
+
+The Kullback-Leibler information from $f_{bag}(x)$ to $f_\cpos(x)$ is defined as
+\begin{align}
+  D_{KL}(f_{bag},f_\cpos) = \int f_{bag}(x) \log \frac{f_{bag}(x)}{f_\cpos (x)} dx.
+\end{align}
+It is non-symmetric, and it is an $f$-divergence. 
+
+The Kullback-Leibler information is suited for the tissue image example, where the discriminative power lies with the tumour pixels, since the ratio of positive bag to negative class is large for tumour pixels. 
+
+If the proportion of tumour pixels in the normal image class is zero (standard MI assumption), the Kullback-Leibler information attains its maximum value (infinity) between a tumour image and the normal image class. 
+
+
+
+
+
