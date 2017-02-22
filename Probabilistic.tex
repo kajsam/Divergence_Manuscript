@@ -52,67 +52,29 @@ Similarly, for the normal images we have
 This is a general description of the origin of the instances, and does not imply any MI assumptions. 
 Restrictions on the different levels of the hierarchical distribution will correlate to MI assumptions.
 The standard MI assumption is then \\
-(1) $P(\Pi^+_{neg} = 0) = 1$: no positive instances in a negative bag\\
-(2) $0<\pi^+_{pos} \leq 1$: at least one positive instance in a positive bag\\
-(3) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ : no overlap between the set of possible positive values and possible negative values \\
+(1) $P(\Pi^+_{neg} = 0) = 1$: No positive instances in a negative bag\\
+(2) $0<\pi^+_{pos} \leq 1$: At least one positive instance in a positive bag\\
+(3) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ : No overlap between the set of possible positive values and possible negative values \\
 The last assumption is generally not explicitly stated, but many algorithms are dedicated to finding $\mathcal{X}^+$, and thereafter use a concept that assumes (3). 
 
 The count-based assumption is\\
 (1) $t_{low,pos} < \pi^+_{pos} < t_{up,pos}$ \\
-(2) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ \\
+(2) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ 
 
 The count-based GMIL can be defined in the probabilistic setting by letting $\pi^+_{pos}$ be a vector with $k$ elements, and $\pi^+_{b,pos} f^+(x|\theta_b^+) = \sum_{k = 1}^K \pi^+_{b,pos,k} f^+_k(x|\theta_{b,k}^+)$, with the restrictions\\
 (1) $\max \{\pi^+_{pos,k} == 0\} = r$ \\
-(2) $\mathcal{X}^+_k$: defines {\it sufficiently close}. 
-(3) $\mathcal{X}^+_k \cap \mathcal{X}^- = \emptyset$ for all $k$ \\
+(2) $\mathcal{X}^+_k$: defines {\it sufficiently close}. \\
+(3) $\mathcal{X}^+_k \cap \mathcal{X}^- = \emptyset$ for all $k$ 
 
 \subsection{Level of information in the probabilistic framework}
-In the review article of Amores, MIL algorithms are categorised according 
+In the review article of Amores, MIL algorithms are categorised according to whether concepts are based on instance-level information or bag-level information. 
+For the instance-level based concepts, the classifier is an aggregation of instance level scores, and any characteristic of the bags themselves are ignored. 
+An example of this is the {\it collective} assumption in Foulds and Frank, where the concept is based on the (estimated) posterior class label of the instances: $P(c|b) = \frac{1}{n_b} \sum_{i = 1}^{n_b} Pr(c|x_i)$. 
 
+The bag-level information is categorised into bag space and embedded space, where embedded space means that each bag is mapped to a single feature vector, and a single instance classifier is used. 
+In the bag space, the classifiers are based on a dissimilarity measure (distances or kernel functions) comparing bags.
 
-In the {\it collective} assumption in Foulds and Frank, the assumption about $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ is relaxed.
-
-
-
-
-
-
-
-
-
-
-
-%A random variable $X_{pos}$ from a positive bag can be seen as a three level Bayes hierarchy. $X_{pos}$ is distributed with parameter $\theta$, which is a random variable. $\theta$ is distributed with parameter $\tau$, which takes value $\tau^+$ with probability $p = \pi_{pos}^+$ and $\tau^-$ with probability $p = 1-\pi_{pos}^+$.
-%\begin{align}
-%  X_{pos}|\theta & \sim P(X_{pos} | \theta) \\
-%  \theta|\tau &  \sim P(\theta|\tau) \\
-%  \tau & \sim \begin{cases}
-%    \tau^+, & \text{with probability } p = \pi_{pos}^+\\
-%    \tau^-, & \text{with probability } p = 1-\pi_{pos}^+
-%  \end{cases}
-%\end{align}
-%
-%The pdf of the $b$th positive bag is then
-%\begin{align}
-%  f_{b,pos}(x) = \pi_{pos}^+ f^+(x|\theta^+_b) +(1-\pi_{pos}^+) f^-(x|\theta^-_b), 
-%\end{align}
-%where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
-%The pdf of positive bags is then
-%\begin{align*}
-%  f_{pos}(x) = \pi_{pos}^+ \int_{\Theta|\tau^+} f^+(x|\theta)h(\theta|\tau^+) d\theta|\tau^+  +(1-\pi_{pos}^+) \int_{\Theta|\tau^-} f^-(x|\theta) h(\theta|\tau^-) d\theta|\tau^-, 
-%\end{align*}
-%where $\theta^+_b$ is the $b$th observation of the random variable $\theta$ with parameter $\tau^+$, and $\theta_b^-$ is the $b$th observation of the random variable $\theta$ with the parameter $\tau^-$.
-%
-%Similarly for negative bags we have
-%\begin{align}
-%  X_{neg}|\theta & \sim P(X_{neg} | \Theta) \\
-%  \Theta|\mathcal{T} &  \sim P(\theta|\tau) \\
-%  \tau & \sim \begin{cases}
-%    P(\mathcal{T} = \tau^+) = \pi_{neg}^+\\
-%    P(\mathcal{T} = \tau^-  = 1-\pi_{neg}^+
-%  \end{cases}
-%\end{align}
-%and
-%\begin{align}
-%  f_{{b'},neg}(x) = \pi_{neg}^+ f^+(x|\theta^+_{b'}) +(1-\pi_{neg}^+) f^-(x|\theta^-_{b'}), 
-%\end{align}
+As with the MI assumptions, the probabilistic framework does not directly imply instance-level, bag-space or embedded-space. 
+Since each bag is described as a pdf, it fits into the bag space. 
+The probabilistic framework is applicable to instance-level information, as in the collective assumption. 
+Embedded space can easily be use by estimating the parameters of the pdfs. 
