@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  22 FEB 2017 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  28 FEB 2017 16:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -288,15 +288,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (./Introduction.tex [2
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 39.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 41.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
-)
-(./Probabilistic.tex [3]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+ [3])
+(./Probabilistic.tex
 Overfull \hbox (1.97015pt too wide) in paragraph at lines 7--10
 []\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 X[]$ \OT1/cmr/m/n/12 de-note the ran-do
 m vari-able of a pos-i-tive in-stance, and let $\OML/cmm/m/it/12 f[]\OT1/cmr/m/
@@ -313,31 +313,27 @@ Overfull \hbox (22.3347pt too wide) in paragraph at lines 64--68
 2 x\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^R[]\OT1/cmr/m/n/12 )$,
  []
 
-[5]) (./Divergence_Classifier.tex [6]
-<Figures/tumourVSnormal.pdf, id=34, 845.1575pt x 597.23125pt>
+[5]) (./Divergence_Classifier.tex [6] [7]
+<Figures/tumourVSnormal.pdf, id=39, 845.1575pt x 597.23125pt>
 File: Figures/tumourVSnormal.pdf Graphic file (type pdf)
 
 <use Figures/tumourVSnormal.pdf>
 Package pdftex.def Info: Figures/tumourVSnormal.pdf used on input line 43.
 (pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
 
-<Figures/tumVSnorm.pdf, id=35, 845.1575pt x 597.23125pt>
+<Figures/tumVSnorm.pdf, id=40, 845.1575pt x 597.23125pt>
 File: Figures/tumVSnorm.pdf Graphic file (type pdf)
 
 <use Figures/tumVSnorm.pdf>
 Package pdftex.def Info: Figures/tumVSnorm.pdf used on input line 49.
 (pdftex.def)             Requested size: 232.86394pt x 164.55167pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7] [8 <./Figures/tumourVSnormal.pdf> <./Figures/tumVSnorm.pdf>])
-(./Distribution.tex [9]) (./Dissimilarity.tex
+ [8 <./Figures/tumourVSnormal.pdf> <./Figures/tumVSnorm.pdf>]) (./Distribution.
+tex [9]) (./Dissimilarity.tex [10]
 Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
-[10] [11]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
@@ -367,15 +363,17 @@ ML/cmm/m/it/12 > p[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$. Then
  $\OMS/cmsy/m/n/12 X[] ^^U
  []
 
+[12]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12] [13 <./Figures/distrs.pdf> <./Figures/pos.pdf> <./Figures/neg.pdf>]
+
 Overfull \hbox (70.24931pt too wide) in paragraph at lines 136--136
 [] 
  []
 
-[14]) (./Conditional.tex
+[13] [14 <./Figures/distrs.pdf> <./Figures/pos.pdf> <./Figures/neg.pdf>])
+(./Conditional.tex
 Overfull \hbox (42.80768pt too wide) in paragraph at lines 27--27
 [] 
  []
@@ -436,7 +434,7 @@ r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
 local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/l
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on main.pdf (21 pages, 690771 bytes).
+Output written on main.pdf (21 pages, 691711 bytes).
 PDF statistics:
  314 PDF objects out of 1000 (max. 8388607)
  194 compressed objects within 2 object streams
