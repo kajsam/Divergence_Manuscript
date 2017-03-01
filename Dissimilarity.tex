@@ -20,10 +20,10 @@ where $P_{bag}$ is the probability distribution of the bag that we want to class
 $P_{ref}$ can be any distribution, but would typically be that of labelled bags, classes, or prototype distributions. 
 
 In practice, the distributions must be estimated from the instances of the bag, using the assumption that they are independent observations from a common underlying distribution. 
-Commonly used in MIL is the EM-algorithm.
+Commonly used is the EM-algorithm.
 Which method to apply for distribution estimation depends on the data, especially the sparsity, previous knowledge, and requirements regarding time consumption. 
 We will not go into the details, but simply use the EM-algorithm.
-Assuming that the instances are observations from an underlying distribution is the collective assumption. 
+Assuming that the instances are observations from an underlying distribution. 
 
 The bag-to-class dissimilarity has not been used in MIL, although there are obvious advantages:
 For one, the computation time decreases when the dissimilarity is calculated only between a bag and the classes, compared to pairwise dissimilarities between a bag and all labelled bags or prototypes. 
@@ -38,48 +38,48 @@ Choice of divergence must reflect the problem at hand.
 %For several areas, the original divergence is alteret to fit the problem, e.g. in clustering, where the size of the subcluster can be of great importance. 
 See e.g. {\color{green} Mollersen et al} for properties of some common divergences. 
 
-Let there be two classes, positive and negative. 
-An instance, $x_i$ is a sample from an underlying distribution, $P_{pos}$ or $P_{neg}$. 
-A bag contains instances from a hierarchical distribution
-\begin{align}
-  X_{ij} \sim \pi_j P_+ + (1-\pi) P_- \, ,
-\end{align}
-where $\pi_j$ is a parameter of the class. 
-This means that we can allow both positive and negative instances to appear in both positive and negative bags.
-Ultimately, $P_{bag, pos} \neq P_{bag, neg}$, or else they cannot be distinguished, so we require $\pi_{pos} \neq \pi_{neg}$.
-
-In the standard assumptions, we have
-\begin{align}
-  X_{i, {pos}} \sim \pi_{pos}P_+ + (1-\pi_{pos}) P_- \, ,
-\end{align}
-where $\pi_{pos} > 0$, and
-\begin{align}
-  X_{i,{neg}} \sim P_-
-\end{align}
-This can be relaxed to 
-\begin{align}
-  X_{i,pos} & \sim \pi_{pos}P_+ + (1-\pi_{pos}) P_- \\
-  X_{i,neg} & \sim \pi_{neg}P_+ + (1-\pi_{neg}) P_- \, ,
-\end{align}
-where $\pi_{pos} \sim P_{\pi_{pos}}$ and $\pi_{neg} \sim P_{\pi_{neg}}$, where $P_{\pi_{pos}} \neq P_{\pi_{neg}}$. 
-This corresponds to the top level of Weidmanns hierarchy. 
-
-We assume that $P_+$ and $P_-$ are parametrised distributions, where $\theta_+$ and $\theta_-$ follow distributions on their own. 
-This means that within a bag, $\theta_+$ and $\theta_-$ are constants, but varies between bags. 
-We believe this is a more realistic approach than assuming that all positive instances come from the same distribution. 
-
-Example: \\
-\begin{align}
-  P_+:  \, &\mathcal{N} (\mu_+, \sigma_+^2) \\
-  \mu_+ \sim & \mathcal{N} (\nu_\mu, \tau_\mu^2) \\
-  \sigma_+^2  \sim & \mathcal{N} (\nu_\sigma, \tau_\sigma^2),   
-\end{align}
-where $\nu$ and $\tau$ are constants, and $\mu_+$ and $\sigma_+$ are drawn once for each bag. 
-
-The two class distributions are estimated based on the bag labels. 
+%Let there be two classes, positive and negative. 
+%An instance, $x_i$ is a sample from an underlying distribution, $P_{pos}$ or $P_{neg}$. 
+%A bag contains instances from a hierarchical distribution
+%\begin{align}
+%  X_{ij} \sim \pi_j P_+ + (1-\pi) P_- \, ,
+%\end{align}
+%where $\pi_j$ is a parameter of the class. 
+%This means that we can allow both positive and negative instances to appear in both positive and negative bags.
+%Ultimately, $P_{bag, pos} \neq P_{bag, neg}$, or else they cannot be distinguished, so we require $\pi_{pos} \neq \pi_{neg}$.
+%
+%In the standard assumptions, we have
+%\begin{align}
+%  X_{i, {pos}} \sim \pi_{pos}P_+ + (1-\pi_{pos}) P_- \, ,
+%\end{align}
+%where $\pi_{pos} > 0$, and
+%\begin{align}
+%  X_{i,{neg}} \sim P_-
+%\end{align}
+%This can be relaxed to 
+%\begin{align}
+%  X_{i,pos} & \sim \pi_{pos}P_+ + (1-\pi_{pos}) P_- \\
+%  X_{i,neg} & \sim \pi_{neg}P_+ + (1-\pi_{neg}) P_- \, ,
+%\end{align}
+%where $\pi_{pos} \sim P_{\pi_{pos}}$ and $\pi_{neg} \sim P_{\pi_{neg}}$, where $P_{\pi_{pos}} \neq P_{\pi_{neg}}$. 
+%This corresponds to the top level of Weidmanns hierarchy. 
+%
+%We assume that $P_+$ and $P_-$ are parametrised distributions, where $\theta_+$ and $\theta_-$ follow distributions on their own. 
+%This means that within a bag, $\theta_+$ and $\theta_-$ are constants, but varies between bags. 
+%We believe this is a more realistic approach than assuming that all positive instances come from the same distribution. 
+%
+%Example: \\
+%\begin{align}
+%  P_+:  \, &\mathcal{N} (\mu_+, \sigma_+^2) \\
+%  \mu_+ \sim & \mathcal{N} (\nu_\mu, \tau_\mu^2) \\
+%  \sigma_+^2  \sim & \mathcal{N} (\nu_\sigma, \tau_\sigma^2),   
+%\end{align}
+%where $\nu$ and $\tau$ are constants, and $\mu_+$ and $\sigma_+$ are drawn once for each bag. 
+%
+%The two class distributions are estimated based on the bag labels. 
 The goal is not to distinguish between $P_+$ and $P_-$.
 We will get $P_{pos}$ and $P_{neg}$. 
-For a new bag, we want to measure $D(P_{bag},P_{pos})$ and/or $D(P_{bag},P_{neg}$.
+For a new bag, we want to measure $D(P_{bag},P_{pos})$ and/or $D(P_{bag},P_{neg})$.
 It is important to notice that $P_{pos}$ is not equal to any $P_{bag, pos}$, but rather a collection of all possible $P_{bag,pos}$s with their probability of occurrence taken in mind.
 Therefore, symmetry of the divergence is not a requirement.
 
@@ -119,21 +119,21 @@ A simple straightforward measure is then
 \end{align}
 and the ratio $d_{KL} (p_{bag},p_{pos})/d_{KL} (p_{bag},p_{neg})$ will give a classification rule.
 
-We will propose a divergence-based dissimilarity function where the two classes are integrated
-\begin{align}
-  D(p_{bag},p_{neg}|p_{pos}) = \int_{\mathcal{X}_{pos}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
-\end{align}
+%We will propose a divergence-based dissimilarity function where the two classes are integrated
+%\begin{align}
+%  D(p_{bag},p_{neg}|p_{pos}) = \int_{\mathcal{X}_{pos}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
+%\end{align}
+%
+%{\color{red} Have a look at this
+%\begin{align}
+%  \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx \leq \geq a \int_{\mathcal{X}_{neg}} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
+%\end{align}
+%}
 
-{\color{red} Have a look at this
-\begin{align}
-  \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx \leq \geq a \int_{\mathcal{X}_{neg}} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
-\end{align}
-}
-
-\begin{align}
-  D^*(p_{bag},p_{neg}|p_{pos}) = \int_{\mathcal{X}_{pos}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
-						+ \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
-\end{align}
+%\begin{align}
+%  D^*(p_{bag},p_{neg}|p_{pos}) = \int_{\mathcal{X}_{pos}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
+%						+ \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag}(x) \log \frac{p_{bag}(x)}{p_{neg}(x)} dx
+%\end{align}
 
 Because we also assume that $\pi_{pos} > \pi_{neg}$ it follows that $p_{p \_ bag} < p_{n \_ bag}, X \in \mathcal{X}_{neg}$ and therefore 
 \begin{align}
