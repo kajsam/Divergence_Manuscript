@@ -33,3 +33,32 @@ to $(1-\pi_{neg}^+) p^-(x|\theta^-)$.
 % The same distortion in $\hat{f}^+$ as in $\hat{f}^-$ will lead to a greater non-overlapping area at $\hat{f}^-$
 Therefore, non-symmetric divergence function. 
 Kullback-Leibler meets the requirement.
+
+\begin{align}
+  p_{bag(pos)} & = \pi_{pos}^+ p^+(x|\theta_b^+) + (1-\pi_{pos}^+) p^-(x|\theta_b^-) \\
+  p_{bag(neg)} & = \pi_{neg}^+ p^+(x|\theta_b^+) + (1-\pi_{neg}^+) p^-(x|\theta_b^-)
+\end{align}
+
+\begin{align}
+  B \rightarrow \infty : 
+  \sum_{b = 1} ^B p^+(x|\theta_b^+) =  \sum_{b' = 1} ^{B'} p^+(x|\theta_{b'}^+)
+\end{align}
+
+% Not true
+%\begin{align}
+%  \mathcal{X}_{neg}: p_{pos} (x) < p_{neg} (x) = \sum_{b = 1} ^{B} p^-(x|\theta_{b}^-)
+% \end{align}
+
+\begin{align}
+  \mathcal{X}_{neg}: p_{pos} (x) < p_{neg} (x) 
+\end{align}
+ 
+\begin{align}
+  \mathcal{X}_{neg}: E(p_{bag(pos)}) < E(p_{bag(neg)})
+\end{align}
+
+\begin{align*}
+  \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag(pos)}(x) \log \frac{p_{bag(pos)}(x)}{p_{neg}(x)} dx <
+   \int_{\mathcal{X}_{neg}} \frac{p_{pos}(x)}{p_{neg}(x)} p_{bag(neg)}(x) \log \frac{p_{bag(neg)}(x)}{p_{neg}(x)} dx
+\end{align*}
+ 
