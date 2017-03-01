@@ -1,19 +1,19 @@
-Let $x_{b,i}$ be the observed instance $i$ in bag $b$, an observation from the underlying distribution $P(X|\mathbf{\theta})$.
-An instance can either be positive $x_{b,i}^+$, or negative, $x_{b',i}^-$.
-Both positive and negative instances occur in both positive and negative bags.
-An instance randomly drawn from a positive bag will be positive with probability $\pi_{pos}^+$ (and negative with probability $1-\pi_{pos}^+$).
-An instance randomly drawn from a negative bag will be positive with probability $\pi_{neg}^+$ (and negative with probability $1-\pi_{neg}^+$).
-The distribution of positive instances is $P(X|\mathbf{\theta}_b^+)$, where $\mathbf{\theta}^+$ is distributed according to $P(\mathbf{\theta}^+|\mathbf{\tau}^+)$, and $\mathbf{\tau}^+$ is a fixed parameter.
-The distribution of negative instances is $P(X|\mathbf{\theta}_b^-)$, where $\mathbf{\theta}^-$ is distributed according to $P(\mathbf{\theta}^-|\mathbf{\tau}^-)$, and $\mathbf{\tau}^-$ is a fixed parameter.
-The pdf of a positive bag $b$ can be written as
-\begin{align}
-  p_{bag(pos),b}(x) = \pi_{pos}^+p^+(x|\mathbf{\theta}_b^+) + (1-\pi_{pos}^+) p^-(x|\mathbf{\theta}_b^-),
-\end{align}
-and that of a negative bag $b'$
-\begin{align}
-  p_{bag(neg),b'}(x) = \pi_{neg}^+p^+(x|\mathbf{\theta}_{b'}^+) + (1-\pi_{neg}^+) p^-(x|\mathbf{\theta}_{b'}^-),
-\end{align}
-This is a Bayesian hierarchical distribution where the hyperparameters $\pi_{pos}^+$ and $\pi_{neg}^+$ differ between the positive and the negative class, whereas the hyperparameters $\theta^+$ and $\theta^-$ differ from bag to bag. 
+%Let $x_{b,i}$ be the observed instance $i$ in bag $b$, an observation from the underlying distribution $P(X|\mathbf{\theta})$.
+%An instance can either be positive $x_{b,i}^+$, or negative, $x_{b',i}^-$.
+%Both positive and negative instances occur in both positive and negative bags.
+%An instance randomly drawn from a positive bag will be positive with probability $\pi_{pos}^+$ (and negative with probability $1-\pi_{pos}^+$).
+%An instance randomly drawn from a negative bag will be positive with probability $\pi_{neg}^+$ (and negative with probability $1-\pi_{neg}^+$).
+%The distribution of positive instances is $P(X|\mathbf{\theta}_b^+)$, where $\mathbf{\theta}^+$ is distributed according to $P(\mathbf{\theta}^+|\mathbf{\tau}^+)$, and $\mathbf{\tau}^+$ is a fixed parameter.
+%The distribution of negative instances is $P(X|\mathbf{\theta}_b^-)$, where $\mathbf{\theta}^-$ is distributed according to $P(\mathbf{\theta}^-|\mathbf{\tau}^-)$, and $\mathbf{\tau}^-$ is a fixed parameter.
+%The pdf of a positive bag $b$ can be written as
+%\begin{align}
+%  p_{bag(pos),b}(x) = \pi_{pos}^+p^+(x|\mathbf{\theta}_b^+) + (1-\pi_{pos}^+) p^-(x|\mathbf{\theta}_b^-),
+%\end{align}
+%and that of a negative bag $b'$
+%\begin{align}
+%  p_{bag(neg),b'}(x) = \pi_{neg}^+p^+(x|\mathbf{\theta}_{b'}^+) + (1-\pi_{neg}^+) p^-(x|\mathbf{\theta}_{b'}^-),
+%\end{align}
+%This is a Bayesian hierarchical distribution where the hyperparameters $\pi_{pos}^+$ and $\pi_{neg}^+$ differ between the positive and the negative class, whereas the hyperparameters $\theta^+$ and $\theta^-$ differ from bag to bag. 
 
 For $x_{pos,i}$, an observed instance in the positive class, the empirical pdf of the positive class can be written as
 \begin{align}
