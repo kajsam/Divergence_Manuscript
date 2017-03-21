@@ -5,7 +5,7 @@ For ease of notation, we will not use bold characters to denote vectors, as ther
 The superscript $^+$ or $^-$ refers to the instance class, the subscript $_{pos}$ or $_{neg}$ refers to the class label of the bag. 
 
 Let $X^+$ denote the random variable of a positive instance, and let $f^+(x|\theta_b^+)$ denote the pdf of the positive instances in bag $b$. 
-Similarly, Let $X^-$ denote the random variable of a negative instance, and let $f^-(x|\theta_b^-)$ denote the pdf of the negative instances in bag $b$. 
+Similarly, let $X^-$ denote the random variable of a negative instance, and let $f^-(x|\theta_b^-)$ denote the pdf of the negative instances in bag $b$. 
 Then, the pdf of bag $b$ is
 \begin{align}
   f_b(x) = \pi^+_b f^+(x|\theta_b^+) + (1-\pi^+_b)f^-(x|\theta_b^-),
@@ -78,7 +78,7 @@ In the review article of Amores, MIL algorithms are categorised according to whe
 For the instance-level based concepts, the classifier is an aggregation of instance level scores, and any characteristic of the bags themselves are ignored. 
 An example of this is the {\it collective} assumption in Foulds and Frank, where the concept is based on the (estimated) posterior class label of the instances: $P(c|b) = \frac{1}{n_b} \sum_{i = 1}^{n_b} Pr(c|x_i)$. 
 
-The bag-level information is categorised into bag space and embedded space, where embedded space means that each bag is mapped to a single feature vector, and a single instance classifier is used. 
+The bag-level information is categorised into bag space and embedded space, where embedded space means that each bag is mapped to a single-feature vector, and a single instance classifier is used. 
 In the bag space, the classifiers are based on a dissimilarity measure (distances or kernel functions) comparing bags.
 
 As with the MI assumptions, the probabilistic framework does not directly imply instance-level, bag-space or embedded-space. 

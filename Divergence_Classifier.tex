@@ -1,9 +1,9 @@
 As with all classification problems, if we knew the exact nature of the data, an optimal classifier could be chosen. 
-Instead, we have to choose between very general assumptions that lead to sub-optimal classifiers, or stronger assumptions that ensure higher performance, but only if the assumptions are correct. 
-There are three fundamental levels for MI problems:
+Instead, we have to choose between general assumptions that lead to sub-optimal classifiers, or stronger assumptions that ensure higher performance, but only if the assumptions are correct. 
+There are three fundamental levels for MI problems: \\
 (1) Choice of MI assumption \\
 (2) Estimation \\
-(3) Choice of classifier
+(3) Choice of classifier \\
 These three steps are present both for deterministic and probabilistic viewpoint, and step (3) is closely linked to step (1) and (2). 
 In the probabilistic framework, the choice of MI assumption can be stated as restrictions on the underlying pdfs. 
 The pdfs that are used in classification of new bags have to be estimated based on the available bags with labels. 
@@ -20,9 +20,8 @@ As pointed out by the author, this has the drawback that the number of compariso
 However, instance level algorithms suffer from inaccurate information (the true instance labels are not known), and the embedded space algorithms suffer from possible oversimplification. 
 
 We therefore suggest a bag level classifier based on the bag-to-class dissimilarity. 
-Hence, there are only two comparisons for each classification. 
+Hence, there are only a many comparisons as there are classes or sub classes for each classification. 
 
-Let $f_\cpos(x)$ be the pdf corresponding to the random variabel $X_{pos}$, i.e. instances in the positive labelled bags. Similarly, let $f_\cneg(x)$ be the pdf corresponding to the random variabel $X_{neg}$.
 Let $D(f_{bag}(x), f_\cpos(x)$ denote the dissimilarity measure from $f_{bag}(x)$ to $f_\cpos(x)$.
 
 \subsection{Divergences}

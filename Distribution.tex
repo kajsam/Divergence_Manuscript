@@ -1,32 +1,48 @@
-%Let $x_{b,i}$ be the observed instance $i$ in bag $b$, an observation from the underlying distribution $P(X|\mathbf{\theta})$.
-%An instance can either be positive $x_{b,i}^+$, or negative, $x_{b',i}^-$.
-%Both positive and negative instances occur in both positive and negative bags.
-%An instance randomly drawn from a positive bag will be positive with probability $\pi_{pos}^+$ (and negative with probability $1-\pi_{pos}^+$).
-%An instance randomly drawn from a negative bag will be positive with probability $\pi_{neg}^+$ (and negative with probability $1-\pi_{neg}^+$).
-%The distribution of positive instances is $P(X|\mathbf{\theta}_b^+)$, where $\mathbf{\theta}^+$ is distributed according to $P(\mathbf{\theta}^+|\mathbf{\tau}^+)$, and $\mathbf{\tau}^+$ is a fixed parameter.
-%The distribution of negative instances is $P(X|\mathbf{\theta}_b^-)$, where $\mathbf{\theta}^-$ is distributed according to $P(\mathbf{\theta}^-|\mathbf{\tau}^-)$, and $\mathbf{\tau}^-$ is a fixed parameter.
-%The pdf of a positive bag $b$ can be written as
-%\begin{align}
-%  p_{bag(pos),b}(x) = \pi_{pos}^+p^+(x|\mathbf{\theta}_b^+) + (1-\pi_{pos}^+) p^-(x|\mathbf{\theta}_b^-),
-%\end{align}
-%and that of a negative bag $b'$
-%\begin{align}
-%  p_{bag(neg),b'}(x) = \pi_{neg}^+p^+(x|\mathbf{\theta}_{b'}^+) + (1-\pi_{neg}^+) p^-(x|\mathbf{\theta}_{b'}^-),
-%\end{align}
-%This is a Bayesian hierarchical distribution where the hyperparameters $\pi_{pos}^+$ and $\pi_{neg}^+$ differ between the positive and the negative class, whereas the hyperparameters $\theta^+$ and $\theta^-$ differ from bag to bag. 
+As stated in the no-free-lunch theorem, generality is traded for performance. 
+Which MI assumption to make is problem specific. 
+We will therefore stick to the most general assumption that $\tau^+ \neq \tau^-$ and $\Pi^+_{pos} \neq \Pi^+_{neg}$, and no assumption regarding $\mathcal{X^+}$ and $\mathcal{X^-}$, i.e. we allow for complete overlap.
 
-For $x_{pos,i}$, an observed instance in the positive class, the empirical pdf of the positive class can be written as
+A second set of assumptions, closely related to the MI assumption, are that of the underlying distributions. 
+The general assumption is that the observations are independent and identically distributed (i.i.d.), an assumption often made implicitly, e.g. in the collective assumption. 
+
+The more accurate the assumptions about the data and its underlying distribution are, the more accurate the estimated distributions can be. 
+If we know the noise distribution in an image, the pixel value distribution will be more accurate compared to no prior information. 
+However, if we assume independent Gaussian noise, when in fact the noise is signal-dependent, the estimated pixel value distribution can be seriously different from the true underlying distribution, and more observations will not increase the accuracy. 
+
+
+Let $f_\cpos(x)$ be the pdf corresponding to the random variabel $X_{pos}$, i.e. instances in the positive labelled bags. Similarly, let $f_\cneg(x)$ be the pdf corresponding to the random variabel $X_{neg}$. 
+For $x_{\cpos,i}$, an observed instance from a positive labelled, the empirical pdf can be written as
 \begin{align}
-  p_{pos}(x) = \frac{1}{B}\sum_{b = 1}^B  p_{bag(pos),b}(x), 
+  \hat{f}_{\cpos}(x) = \frac{1}{B}\sum_{b = 1}^B  f_{pos,b}(x), 
 \end{align}
-and likewise for the negative class
+and likewise for the negative labelled bags
 \begin{align}
-  p_{neg}(x) = \frac{1}{B'}\sum_{b' = 1}^{B'}  p_{bag(neg),{b'}}(x). 
+  \hat{f}_{\cneg}(x) = \frac{1}{B'}\sum_{b' = 1}^{B'}  f_{neg,{b'}}(x). 
 \end{align}
-$B$ and $B'$ are the number of all possible bag distributions. 
+$B$ and $B'$ are the number of bags. 
+In practice, $f_{pos,b}(x)$ and $f_{neg,{b'}}(x)$ also have to be estimated. 
+An alternative approach is then to estimate $f_{\cpos}(x)$ and  $f_{\cpos}(x)$ directly from $x_{\cpos,i}$, ignoring the bag information. 
+By that strategy, a minimum of parameters is estimated for each distribution. 
 
-We assume that $\pi_{pos}^+ > \pi_{neg}^+$, that is, the probability of a randomly drawn instance from a randomly drawn positive bag being positive is greater than if the instance were drawn from a negative bag. 
+To keep the approach at a general level, we propose estimating $f_{\cpos}(x)$ and $f_{\cpos}(x)$ by a mixture of Gaussian distributions. 
+The only additional assumption which has to be made is continuity. 
+Gaussian mixture distributions can approximate any continuous distribution with arbitrary accuracy, and is therefore suited when no prior information is available. 
+The resulting estimation of course depends on the i.i.d. and continuity assumptions being correct, and the amount of available observations. 
 
-We make no assumptions regarding the distributions, besides continuity, and we will not attempt to estimate the parameters. 
+\begin{align}
+  \hat{f}_{\cpos}(x) = \frac{1}{K}\sum_{k = 1}^K  \phi(x|\Theta_k), 
+\end{align}
+where $K$ is the number of components, and does not reflect the number of bags, $\phi$ is the Gaussian distribution, and $\Theta_k$ is the parameter vector for component $k$. 
+Similarly, we have
+\begin{align}
+  \hat{f}_{\cneg}(x) = \frac{1}{K'}\sum_{{k'} = 1}^{K'}  \phi(x|\Theta_{k'}), 
+\end{align}
+and
+\begin{align}
+  \hat{f}_{bag}(x) = \frac{1}{L}\sum_{\ell = 1}^{L}  \phi(x|\Theta_\ell), 
+\end{align}
 
-Instead, the distributions will be approximated by a mixture of Gaussian distributions. 
+
+
+
+{\color{red} We assume that $\Pi_{pos}^+ > \Pi_{neg}^+$, that is, the probability of a randomly drawn instance from a randomly drawn positive bag being positive is greater than if the instance were drawn from a negative bag. }
