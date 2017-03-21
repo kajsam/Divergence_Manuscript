@@ -7,17 +7,35 @@
   f_{neg}(x) : & \text{ pdf of negative bag} \\
   f_{POS} (x) : & \text{ pdf of positive labelled bags} \\
   f_{NEG} (x) : & \text{ pdf of negative labelled bags} \\
-  \Pi_{pos}^+ : & \text{ probability of an instance in a positive bag being sampled for } f^+(x)\\
-  \Pi_{neg}^+ : & \text{ probability of an instance in a negative bag being sampled for } f^+(x) \\
-  X_{pos} : & \text{ random variabel in positive bag} \\
-  x_{pos,b,i} : & \text{ observation $i$ in positive bag $b$} \\
-  X_{neg} : & \text{ random variabel in negative bag} \\
-  x_{neg,{b'},i} : & \text{ observation $i$ in negative bag $b'$} \\
-  \Theta^+ : & \text{ random variable with distribution parameter } \tau^+ \\
-  \theta_b^+ : & \text{ $b$th distribution parameter (observation of $\Theta^+$)} \\
-  \Theta^- : & \text{ random variable with distribution parameter $\tau^-$} \\
-  \theta_b^- : & \text{ $b$th distribution parameter (observation of $\Theta^-$)} \\
-  \mathcal{T} : & \text{ random variable} \\
-  \tau^+, \tau^- : & \text{ observations of $\mathcal{T}$} \\
+%   \Pi_{pos}^+ : & \text{ probability of an instance in a positive bag being sampled for } f^+(x)\\
+%  \Pi_{neg}^+ : & \text{ probability of an instance in a negative bag being sampled for } f^+(x) \\
+%  X_{pos} : & \text{ random variabel in positive bag} \\
+%  x_{pos,b,i} : & \text{ observation $i$ in positive bag $b$} \\
+%  X_{neg} : & \text{ random variabel in negative bag} \\
+%  x_{neg,{b'},i} : & \text{ observation $i$ in negative bag $b'$} \\
+%  \Theta^+ : & \text{ random variable with distribution parameter } \tau^+ \\
+%  \theta_b^+ : & \text{ $b$th distribution parameter (observation of $\Theta^+$)} \\
+%  \Theta^- : & \text{ random variable with distribution parameter $\tau^-$} \\
+%  \theta_b^- : & \text{ $b$th distribution parameter (observation of $\Theta^-$)} \\
+%  \mathcal{T} : & \text{ random variable} \\
+%  \tau^+, \tau^- : & \text{ observations of $\mathcal{T}$} \\
 \end{align*}
+
+Sample from positive bag $b$:\\
+(1) Draw $\pi^+_{pos,b}$ from $P(\Pi^+_{pos})$ \\
+(2) Draw $\tau_b$ from $ \mathcal{T}  \sim \begin{cases}
+    P(\mathcal{T} = \tau^+) = \pi_{pos,b}^+\\
+    P(\mathcal{T} = \tau^-)  = 1-\pi_{pos,b}^+
+  \end{cases} $ \\
+(3) Draw $\theta_b$ from $P(\Theta|\tau_b)$ \\
+(4) Draw $x_{pos,b,i}$ from $P(X|\theta_b)$
+
+Sample from negative bag $b'$:\\
+(1) Draw $\pi^+_{neg,b'}$ from $P(\Pi^+_{neg})$ \\
+(2) Draw $\tau_{b'}$ from $ \mathcal{T}  \sim \begin{cases}
+    P(\mathcal{T} = \tau^+) = \pi_{neg,b'}^+\\
+    P(\mathcal{T} = \tau^-)  = 1-\pi_{neg,b'}^+
+  \end{cases} $ \\
+(3) Draw $\theta_{b'}$ from $P(\Theta|\tau_{b'})$ \\
+(4) Draw $x_{neg,b',j}$ from $P(X|\theta_{b'})$
  
