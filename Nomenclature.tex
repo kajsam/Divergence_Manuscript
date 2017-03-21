@@ -5,10 +5,10 @@
   f_{bag}(x) : & \text{ pdf of bag (unknown class)} \\
   f_{pos}(x) : & \text{ pdf of positive bag} \\
   f_{neg}(x) : & \text{ pdf of negative bag} \\
-  f_{POS} (x) : & \text{ pdf of positive class} \\
-  f_{NEG} (x) : & \text{ pdf of negative class} \\
-  \pi_{pos}^+ : & \text{ probability of an instance in a positive bag being sampled for } f^+(x)\\
-  \pi_{neg}^+ : & \text{ probability of an instance in a negative bag being sampled for } f^+(x) \\
+  f_{POS} (x) : & \text{ pdf of positive labelled bags} \\
+  f_{NEG} (x) : & \text{ pdf of negative labelled bags} \\
+  \Pi_{pos}^+ : & \text{ probability of an instance in a positive bag being sampled for } f^+(x)\\
+  \Pi_{neg}^+ : & \text{ probability of an instance in a negative bag being sampled for } f^+(x) \\
   X_{pos} : & \text{ random variabel in positive bag} \\
   x_{pos,b,i} : & \text{ observation $i$ in positive bag $b$} \\
   X_{neg} : & \text{ random variabel in negative bag} \\
@@ -20,10 +20,4 @@
   \mathcal{T} : & \text{ random variable} \\
   \tau^+, \tau^- : & \text{ observations of $\mathcal{T}$} \\
 \end{align*}
-
-\noindent
-$I_{KL}(bag,\cpos) = I_{KL}(f_{bag}(x), f_{POS}(x))$ \\
-$D_{KL} = I_{KL} (bag,\cneg)/I_{KL} (bag,\cpos) $\\
-$condI_{KL} (bag,\cneg|\cpos) = I_{KL} (f_{bag}(x),f_{NEG}(x) | f_{ALT}(x) = f_{POS} (x)) $ \\
-
  
