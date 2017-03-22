@@ -6,17 +6,25 @@ For bag-level information, the dissimilarity is measured between the bag as a wh
 In the embedded space, the instance values are transformed to a single vector (e.g. population mean and variance), and a single-instance dissimilarity measure can be used. 
 Hybrid versions also exist, see e.g. {\color{green} Chepuliga (2016)}. 
 
+In Amores, all bag level classifiers are based on bag-to-bag dissimilarity measures. 
+As pointed out by the author, this has the drawback that the number of comparisons that has to be made increases exponentially, and so the computational burden.
+However, instance level algorithms suffer from inaccurate information (the true instance labels are not known), and the embedded space algorithms suffer from possible oversimplification. 
+
+We therefore suggest a bag level classifier based on the bag-to-class dissimilarity. 
+Hence, there are only a many comparisons as there are classes or sub classes for each classification. 
+
+
 We here introduce two new approaches that has not been studied in the MIL context: 
 (1) Divergence-based dissimilarity measures. 
 (2) Bag-to-class dissimilarities. 
 
 A divergence function (or simply divergence) is a measure of dissimilarity between two probability distributions.
-Divergences are not distance functions in the mathematical definition, as they don't necessarily fulfil the symmetry or the triangle inequality properties. 
-Common divergences are the Kullback-Leibler information, the Bhattacharrya distance, etc. 
+Divergences are not distance functions by the mathematical definition, as they don't necessarily fulfil the symmetry or the triangle inequality properties. 
 There are no common properties that a function has to fulfil to be called a divergence, but many divergences have known properties, and are categorised accordingly. 
 Because dissimilarity between probability distributions is not uniquely defined, but very much depends on the problem at hand, there is a huge range of divergences. 
 In that aspects, divergences are suited to solve MI problems if the proper divergence can be matched. 
-% In the MIL context, the instances of a bag form the basis of a probability distribution estimate, and then a divergence can be applied. 
+Common divergences are the Kullback-Leibler information, the Bhattacharrya distance, etc. 
+
 Let 
 \begin{align}
   D(P_{bag}, P_{ref})\, ,
@@ -25,14 +33,13 @@ where $P_{bag}$ is the probability distribution of the bag that we want to class
 $P_{ref}$ can be any distribution, but would typically be that of labelled bags, classes, or prototypes. 
 
 The bag-to-class dissimilarity has not been used in MIL, although there are obvious advantages:
-For one, the computation time decreases when the dissimilarity is calculated only between a bag and the classes, compared to pairwise dissimilarities between a bag and all labelled bags. %  or prototypes. 
-Generally, we do not assume that bags in a class are equal, and therefore, after calculating the dissimilarities between the new bag and the labelled bags, a second step must be decided upon: how many bags will influence the classification, and how are they weighted.
-
+For one, the computation time decreases when the dissimilarity is calculated only between a bag and the classes, compared to pairwise dissimilarities between a bag and all labelled bags.
+Generally, we do not assume that bags in a class are equal, and therefore, after calculating the dissimilarities between the new bag and the labelled bags, the classifier cannot simply choose the label of the most similar bag. A second step is required, where the number of bags influencing the classification must be decided upon, and how their contribution is weighted. 
 A bag-to-class approach can also be used without a divergence, but we will proceed with the divergence approach. 
 
 For a new bag, we want to measure $D(P_{bag},P_{\cpos})$ and/or $D(P_{bag},P_{\cneg})$.
-$P_{\cpos}$ is not equal to any $P_{bag}$ of the positive class, but rather all possible bag distributions of the positive class with their probability of occurrence taken in mind. 
-A bag's distribution is then one of the possible distributions of that class. 
+$P_{\cpos}$ is not equal to any $P_{bag}$ of the positive class.
+A bag's distribution is one of the possible distributions of that class. 
 Therefore, symmetry of the divergence is not a requirement.
 
 Back to the example of tissue images, we can illustrate it as follows. 
@@ -49,6 +56,8 @@ The pdf of a bag will not resemble the pdf of either classes of images.
 
 If we could accurately estimate $f^+(x)$, the distribution of the tumour pixels, and $\pi_{bag}^+$, the proportion of tumour pixels in an unlabelled image, we could treat this as a count-based assumption and classify accordingly. 
 However, by using the pdfs directly, without explicitly estimating the parameters in the different levels of the Bayes' hierarchy, we can possibly make more accurate estimates. 
+
+The goal is to pick a divergence that is able to discriminate between a positive and a negative bag by measuring the dissimilarity to $P_{pos}$ and/or $P_{neg}$.
 In this example, we see that the overlapping area between bag and class is fairly similar for both classes in the normal pixel range. 
 But for the tumour pixel range, the difference is larger. 
 However, since the proportion of normal pixels is larger than that of tumour pixels, there is a risk of ignoring this if we measure dissimilarity by overlapping areas, as e.g. the Bhattacharyya distance does.
@@ -90,7 +99,6 @@ An illustration
   \end{subfigure}
 \end{figure}
 
-The goal is to pick a divergence that is able to discriminate between a positive and a negative bag by measuring the dissimilarity to $P_{pos}$ and/or $P_{neg}$.
 %Let $\mathcal{X}_{pos > neg}$ be the region where $p_{pos}(x) > p_{neg}(x)$. 
 %Unless $p_{pos} = p_{neg}$ we have $\mathcal{X}_{pos > neg}$ nonempty, which gives $\mathcal{X}_{pos < neg}$ nonempty, whereas $\mathcal{X}_{pos = neg}$ might be empty or not. 
 
@@ -131,6 +139,6 @@ In practice, the distributions must be estimated from the instances of the bag, 
 Commonly used is the EM-algorithm.
 Which method to apply for distribution estimation depends on the data, especially the sparsity, previous knowledge, and requirements regarding time consumption. 
 We will not go into the details, but simply use the EM-algorithm.
-Assuming that the instances are observations from an underlying distribution. 
+% Assuming that the instances are observations from an underlying distribution. 
 
 

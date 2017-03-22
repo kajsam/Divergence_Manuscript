@@ -1,5 +1,5 @@
 The instances in a bag are most often treated as fixed points, but can also be viewed as observations of random variables with an (unknown) probability distribution. 
-The probabilistic viewpoint is not an MI assumption by itself, but can be used as a tool to analyse the problem and choose the appropriate concept. 
+The probabilistic viewpoint is not an MI assumption by itself, but can be used as a tool to analyse the problem and choose the appropriate strategies for classification. 
 
 For ease of notation, we will not use bold characters to denote vectors, as there is no need to distinguish between vectors and scalars in the following, and we will refer to random vectors as random variables.
 The superscript $^+$ or $^-$ refers to the instance class, the subscript $_{pos}$ or $_{neg}$ refers to the class label of the bag. 
@@ -12,21 +12,21 @@ Then, the pdf of bag $b$ is
 \end{align}
 where $0 \leq \pi^+_b \leq 1$ denotes the proportion of positive instances in bag $b$. 
 
-As an illustrative example, consider images of tissue with class label {\it tumour} (positive) or {\it normal} (negative). 
+As an illustrative example, consider tissue images with class label {\it tumour} (positive) or {\it normal} (negative). 
 The image is the bag, and the pixels or image segments are its instances. 
 The value of each pixel is then considered to be an observation from the underlying bag distribution. 
 A pixel will belong to either tumour, with pdf $f^+(x|\theta_b^+)$, or normal tissue, $f^-(x|\theta_b^-)$, but the individual pixels are not labelled. 
-In image $b$, a certain proportion are tumour pixels ($\pi^+_b$), the rest ($1-\pi^+_b$) are normal pixels.  
+In image $b$, a certain proportion,  $\pi^+_b$,  are tumour pixels, the rest, $1-\pi^+_b$, are normal pixels.  
 The pixels from tumour image $b$ has pdf
 \begin{align}
-  f_{b,pos}(x) = \pi^+_{b,pos} f^+(x|\theta_b^+) + (1-\pi^+_{b,pos})f^-(x|\theta_b^-).
+  f_{pos,b}(x) = \pi^+_{pos,b} f^+(x|\theta_b^+) + (1-\pi^+_{pos,b})f^-(x|\theta_b^-).
 \end{align}
 Similarly, the pixels from a normal image $b'$ has pdf
 \begin{align}
-  f_{b',neg}(x) = \pi^+_{b',neg} f^+(x|\theta_{b'}^+) + (1-\pi^+_{b,neg})f^-(x|\theta_{b'}^-).
+  f_{neg,b'}(x) = \pi^+_{neg,b'} f^+(x|\theta_{b'}^+) + (1-\pi^+_{neg,b'})f^-(x|\theta_{b'}^-).
 \end{align}
 Since both tumour and normal tissue vary from image to image, we assume $\theta_b^+$ being an observation from the distribution $P(\Theta|\tau^+)$ and $\theta_b^-$ being an observation from the distribution $P(\Theta|\tau^-)$, where $\tau^+$ and $\tau^-$ are parameters. 
-And since the tumour size varies, we also assume that $\pi^+_{b,pos}$ is an observation from $P(\Pi^+_{pos})$. 
+And since the tumour size varies, we also assume that $\pi^+_{pos,b}$ is an observation from $P(\Pi^+_{pos})$. 
 Written as a hierarchical distribution: 
 \begin{align}
   X_{pos}|\Theta & \sim P(X_{pos} | \Theta) \\
@@ -37,7 +37,7 @@ Written as a hierarchical distribution:
   \end{cases} \\
   \Pi_{pos}^+ & \sim P(\Pi^+_{pos})
 \end{align}
-Similarly, for the normal images we have
+Similarly, for the negative images we have
 \begin{align}
   X_{neg}|\Theta & \sim P(X_{neg} | \Theta) \\
   \Theta|\mathcal{T} &  \sim P(\Theta|\mathcal{T}) \\
@@ -56,22 +56,22 @@ Similarly, for the normal images we have
 %
 
 \subsection{MI assumption in the probabilistic framework}
-This is a general description of the origin of the instances, and does not imply any MI assumptions. 
-Restrictions on the different levels of the hierarchical distribution will correlate to MI assumptions.
-The standard MI assumption is then \\
+The hierarchical distribution is a general description of the origin of the instances, and does not imply any MI assumptions. 
+Restrictions on the different levels of the hierarchical distribution will correlate to MI assumptions, as illustrated below.\\
+The standard MI assumption: \\
 (1) $P(\Pi^+_{neg} = 0) = 1$: No positive instances in a negative bag\\
 (2) $0<\pi^+_{pos} \leq 1$: At least one positive instance in a positive bag\\
 (3) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ : No overlap between the set of possible positive values and possible negative values \\
 The last assumption is generally not explicitly stated, but many algorithms are dedicated to finding $\mathcal{X}^+$, and thereafter use a concept that assumes (3). 
 
-The count-based assumption is\\
+The count-based assumption:\\
 (1) $t_{low,pos} < \pi^+_{pos} < t_{up,pos}$ \\
 (2) $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$ 
 
-The count-based GMIL can be defined in the probabilistic setting by letting $\pi^+_{pos}$ be a vector with $k$ elements, and $\pi^+_{b,pos} f^+(x|\theta_b^+) = \sum_{k = 1}^K \pi^+_{b,pos,k} f^+_k(x|\theta_{b,k}^+)$, with the restrictions\\
+The count-based GMIL can be defined in the probabilistic setting by letting $\pi^+_{pos}$ be a vector with $k$ elements, and $\pi^+_{pos,b} f^+(x|\theta_b^+) = \sum_{k = 1}^K \pi^+_{pos,b,k} f^+_k(x|\theta_{b,k}^+)$, with the restrictions\\
 (1) $\max \{\pi^+_{pos,k} == 0\} = r$ \\
 (2) $\mathcal{X}^+_k$: defines {\it sufficiently close}. \\
-(3) $\mathcal{X}^+_k \cap \mathcal{X}^- = \emptyset$ for all $k$ 
+(3) $\mathcal{X}^+_k \cap \mathcal{X}^- = \emptyset$ for all $k$ \\
 
 \subsection{Level of information in the probabilistic framework}
 In the review article of Amores, MIL algorithms are categorised according to whether concepts are based on instance-level information or bag-level information. 
@@ -82,6 +82,7 @@ The bag-level information is categorised into bag space and embedded space, wher
 In the bag space, the classifiers are based on a dissimilarity measure (distances or kernel functions) comparing bags.
 
 As with the MI assumptions, the probabilistic framework does not directly imply instance-level, bag-space or embedded-space. 
-Since each bag is described as a pdf, it fits into the bag space. 
 The probabilistic framework is applicable to instance-level information, as in the collective assumption. 
 Embedded space can easily be use by estimating the parameters of the pdfs. 
+But since each bag is described as a pdf, it fits into the bag space. 
+

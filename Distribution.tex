@@ -9,20 +9,23 @@ The more accurate the assumptions about the data and its underlying distribution
 If we know the noise distribution in an image, the pixel value distribution will be more accurate compared to no prior information. 
 However, if we assume independent Gaussian noise, when in fact the noise is signal-dependent, the estimated pixel value distribution can be seriously different from the true underlying distribution, and more observations will not increase the accuracy. 
 
+Accurate estimation the four levels of the Baye's hierarchy is out of reach for most problems. 
+Therefore, we suggest to directly estimate the pdf of a bag with unknown label based on its instances, $\hat{f}_{bag}(x)$.
+A dissimilarity measure can now be chosen to constitute the classifier. 
 
 Let $f_\cpos(x)$ be the pdf corresponding to the random variabel $X_{pos}$, i.e. instances in the positive labelled bags. Similarly, let $f_\cneg(x)$ be the pdf corresponding to the random variabel $X_{neg}$. 
-For $x_{\cpos,i}$, an observed instance from a positive labelled, the empirical pdf can be written as
-\begin{align}
-  \hat{f}_{\cpos}(x) = \frac{1}{B}\sum_{b = 1}^B  f_{pos,b}(x), 
-\end{align}
-and likewise for the negative labelled bags
-\begin{align}
-  \hat{f}_{\cneg}(x) = \frac{1}{B'}\sum_{b' = 1}^{B'}  f_{neg,{b'}}(x). 
-\end{align}
-$B$ and $B'$ are the number of bags. 
-In practice, $f_{pos,b}(x)$ and $f_{neg,{b'}}(x)$ also have to be estimated. 
-An alternative approach is then to estimate $f_{\cpos}(x)$ and  $f_{\cpos}(x)$ directly from $x_{\cpos,i}$, ignoring the bag information. 
-By that strategy, a minimum of parameters is estimated for each distribution. 
+%For $x_{\cpos,i}$, an observed instance from a positive labelled, the empirical pdf can be written as
+%\begin{align}
+%  \hat{f}_{\cpos}(x) = \frac{1}{B}\sum_{b = 1}^B  f_{pos,b}(x), 
+%\end{align}
+%and likewise for the negative labelled bags
+%\begin{align}
+%  \hat{f}_{\cneg}(x) = \frac{1}{B'}\sum_{b' = 1}^{B'}  f_{neg,{b'}}(x). 
+%\end{align}
+%$B$ and $B'$ are the number of bags. 
+%In practice, $f_{pos,b}(x)$ and $f_{neg,{b'}}(x)$ also have to be estimated. 
+%An alternative approach is then to 
+By estimating $f_{\cpos}(x)$ and  $f_{\cpos}(x)$ directly from $x_{\cpos,i}$, ignoring the bag information, a minimum of parameters is estimated for each distribution. 
 
 To keep the approach at a general level, we propose estimating $f_{\cpos}(x)$ and $f_{\cpos}(x)$ by a mixture of Gaussian distributions. 
 The only additional assumption which has to be made is continuity. 
@@ -32,7 +35,7 @@ The resulting estimation of course depends on the i.i.d. and continuity assumpti
 \begin{align}
   \hat{f}_{\cpos}(x) = \frac{1}{K}\sum_{k = 1}^K  \phi(x|\Theta_k), 
 \end{align}
-where $K$ is the number of components, and does not reflect the number of bags, $\phi$ is the Gaussian distribution, and $\Theta_k$ is the parameter vector for component $k$. 
+where $K$ is the number of components, which does not reflect the number of bags, $\phi$ is the Gaussian distribution, and $\Theta_k$ is the parameter vector for component $k$. 
 Similarly, we have
 \begin{align}
   \hat{f}_{\cneg}(x) = \frac{1}{K'}\sum_{{k'} = 1}^{K'}  \phi(x|\Theta_{k'}), 

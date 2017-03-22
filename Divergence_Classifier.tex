@@ -4,23 +4,14 @@ There are three fundamental levels for MI problems: \\
 (1) Choice of MI assumption \\
 (2) Estimation \\
 (3) Choice of classifier \\
-These three steps are present both for deterministic and probabilistic viewpoint, and step (3) is closely linked to step (1) and (2). 
+These three steps are present both for deterministic and probabilistic viewpoint, and all steps are closely linked together.
+The MI assumption directly implies what to estimate, e.g., $\mathcal{X}^+$ if $\mathcal{X}^+ \cap \mathcal{X}^- = \emptyset$, and also choice of classifier, which in turn is influenced by the estimation method. 
+
 In the probabilistic framework, the choice of MI assumption can be stated as restrictions on the underlying pdfs. 
 The pdfs that are used in classification of new bags have to be estimated based on the available bags with labels. 
 Finally, the classifier can be chosen and trained based on the previous assumptions and choices. 
 
 The most general MI assumption in the probabilistic framework is that $\tau^+ \neq \tau^-$ (the pdf of positive instances is different from the pdf of negative instances) and $\Pi_{pos}^+ \neq \Pi_{neg}^+$ (the distribution of the proportion of positive instances in a positive bag is different form that of positive instances in a negative bag). 
-
-Accurate estimation the four levels of the Baye's hierarchy is out of reach for most problems. 
-Therefore, we suggest to directly estimate the pdf of a bag with unknown label based on its instances, $\hat{f}_{bag}(x)$.
-A dissimilarity measure can now be chosen to constitute the classifier. 
-
-In Amores, all bag level classifiers are based on bag-to-bag dissimilarity measures. 
-As pointed out by the author, this has the drawback that the number of comparisons that has to be made increases exponentially, and so the computational burden.
-However, instance level algorithms suffer from inaccurate information (the true instance labels are not known), and the embedded space algorithms suffer from possible oversimplification. 
-
-We therefore suggest a bag level classifier based on the bag-to-class dissimilarity. 
-Hence, there are only a many comparisons as there are classes or sub classes for each classification. 
 
 
 
